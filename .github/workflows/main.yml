@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Build webcomponent
-        run: npm run Build
+        run: npm run build
 
       - name: Purge dist folder
         run: ./purge-dist.sh
