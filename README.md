@@ -1,48 +1,46 @@
-# Svelte + TS + Vite
+# ukraine-banner
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+This is a **web component** that provides a **simple banner against the war in Ukraine**. 
 
-## Recommended IDE Setup
+## Usage
 
-[VSCode](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+On the [releases](https://github.com/euberdeveloper/ukraine-banner/releases) you can download the file `ukraine-banner.tar.gz`. Inside, there will be a README.md with the js files implementing the webcomponent. The **umd** version is just **6KB**, so very light.
 
-## Need an official Svelte framework?
+The **tag name** is `<ukraine-ribbon>` and it accepts the following options:
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+| **Property** | **Required** | **Default**                | **Description**                                                                                                             |
+| ------------ | ------------ | -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| vertical     | NO           | 'bottom'                   | It says if the ribbon will be on the top or on the bottom. (Possible values: 'top' and 'bottom').                           |
+| horizontal   | NO           | 'right'                    | It says if the ribbon will be on the left or on the right. (Possible values: 'left' and 'right').                           |
+| href         | NO           | undefined                  | It says the url where the user will be redirected after clicking the ribbon. If not specified, the ribbon is not clickable. |
+| title        | NO           | undefined                  | It says the title that will be displayed when the mouse is over the ribbon.                                                 |
+| height       | NO           | 3vw                        | It says the height of the ribbon.                                                                                           |
+| boxshadow    | NO           | '0 0 8px rgb(0 0 0 / 50%)' | It says the box shadow that the ribbon will have.                                                                           |
 
-## Technical considerations
+## Example
 
-**Why use this over SvelteKit?**
+```html
+<!DOCTYPE html>
+<html lang="en">
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-  `vite dev` and `vite build` wouldn't work in a SvelteKit environment, for example.
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- NOTE THAT HERE THE ADDRESS TO THE JS FILE IS RELATIVE AND THAT YOU MAY NEED TO CHANGE THE VERSION IN THE FILE NAME -->
+    <script src="./ukraine-banner.umd.1.0.0.js"></script>
+    <title>Ukraine Banner Example</title>
+</head>
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+<body>
+    <ukraine-ribbon></ukraine-ribbon>
+</body>
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+</html>
 ```
+
+## Result
+
+The result will be something like this (you can see the ribbon added in the bottom right corner of the page):
+
+![example_result](./docs/example.jpg)
