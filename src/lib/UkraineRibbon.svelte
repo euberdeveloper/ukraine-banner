@@ -12,6 +12,8 @@
   export let vertical: "top" | "bottom" = "bottom";
   export let horizontal: "left" | "right" = "right";
 
+  export let zindex: string | undefined = "999999";
+
   let top: boolean;
   let bottom: boolean;
   let left: boolean;
@@ -28,7 +30,7 @@
   });
 </script>
 
-<div class="ukraine-ribbon" class:top class:bottom class:left class:right>
+<div class="ukraine-ribbon" class:top class:bottom class:left class:right style="--zindex:{zindex}">
   <a
     class="ribbon"
     {href}
@@ -46,7 +48,7 @@
     top: 0;
     right: 0;
     transform: translateX(45%);
-    z-index: 999999;
+    z-index: var(--zindex);
 
     > .ribbon {
       position: relative;
