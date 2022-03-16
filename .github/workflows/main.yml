@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Purge dist folder
-        run: ./purge-dist.sh
+        run: ./purge-dist.sh ${{ steps.project-version.outputs.version }}
 
       - name: Compress dist folder
         uses: master-atul/tar-action@v1.0.2
