@@ -1,0 +1,49 @@
+name: Publish Webcomponent to Releases
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Get version of the project
+        id: project-version
+        uses: "euberdeveloper/ga-project-version@main"
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install node dependencies
+        run: npm install
+
+      - name: Build webcomponent
+        run: npm run Build
+
+      - name: Purge dist folder
+        run: ./purge-dist.sh
+
+      - name: Compress dist folder
+        uses: master-atul/tar-action@v1.0.2
+        with:
+          command: c
+          files: |
+            ./ukraine-banner
+          outPath: ukraine-banner.tar.gz
+
+      - name: Add release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ steps.project-version.outputs.version }}"
+          prerelease: false
+          title: "Deploy Ukraine Banner"
+          files: ukraine-banner.tar.gz
+      
