@@ -30,17 +30,19 @@
   });
 </script>
 
-<div class="ukraine-ribbon" class:top class:bottom class:left class:right style="--zindex:{zindex}">
-  <a
-    class="ribbon"
-    {href}
-    {title}
-    style="--height:{height}; --box-shadow:{boxshadow}"
-  >
-    <div class="stripe blue" />
-    <div class="stripe yellow" />
-  </a>
-</div>
+<a
+  class="ukraine-ribbon"
+  class:top
+  class:bottom
+  class:left
+  class:right
+  {href}
+  {title}
+  style="--zindex:{zindex}; --height:{height}; --box-shadow:{boxshadow}"
+>
+  <div class="stripe blue" />
+  <div class="stripe yellow" />
+</a>
 
 <style type="scss">
   .ukraine-ribbon {
@@ -50,57 +52,44 @@
     transform: translateX(45%);
     z-index: var(--zindex);
 
-    > .ribbon {
-      position: relative;
-      display: block;
-      width: 100vw;
-      height: var(--height);
-      transform: rotate(45deg);
-      box-shadow: var(--box-shadow);
+    display: block;
+    width: 100vw;
+    height: var(--height);
+    transform: rotate(45deg);
+    box-shadow: var(--box-shadow);
 
-      > .stripe {
-        width: 100%;
-        height: 50%;
+    > .stripe {
+      width: 100%;
+      height: 50%;
 
-        &.blue {
-          background: #275bbb;
-        }
-        &.yellow {
-          background: #fad503;
-        }
+      &.blue {
+        background: #275bbb;
+      }
+      &.yellow {
+        background: #fad503;
       }
     }
 
     &.left {
       left: 0;
       right: auto;
-      transform: translateX(-45%);
 
       &.top {
-        > .ribbon {
-          transform: rotate(-45deg);
-        }
+        transform: translateX(-45%) rotate(-45deg);
       }
       &.bottom {
-        > .ribbon {
-          transform: rotate(45deg);
-        }
+        transform: translateX(-45%) rotate(45deg);
       }
     }
     &.right {
       left: auto;
       right: 0;
-      transform: translateX(45%);
 
       &.top {
-        > .ribbon {
-          transform: rotate(45deg);
-        }
+        transform: translateX(45%) rotate(45deg);
       }
       &.bottom {
-        > .ribbon {
-          transform: rotate(-45deg);
-        }
+        transform: translateX(45%) rotate(-45deg);
       }
     }
     &.top {
